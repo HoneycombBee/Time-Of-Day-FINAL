@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Flexible Template</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+		* {padding:0; margin:0;}
+		html {background-color:rgb(219, 120, 120);}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			max-width:960px; /* keeps from getting too large on wide screen */
+			width:90%; /* shrink to fit screen */
+			margin:auto; /* center in html element */
+			background-color:rgb(131, 93, 129);
+			padding:20px;
+			min-height:100%; /* keeps from getting too large on wide screen */
+			}
+		img.flexible {
+			float:right;
+			display:inline-block;
+			padding:20px;
+			max-width:300px; /* actual size of image */
+			width:33%; /* approximate size taken on screen in maximum view */
+		}
+		p {margin:10px;}
+		h1,h2,h3,h4,h5,h6{
+			font-weight:normal;
+			margin:10px;
+			}
+		h1.masthead {margin-top:0;}
+		footer {
+			text-align:center;
+			clear:both; /* ride below all items */
+			}
+		nav{
+			text-align:center; /* centers the nav */
+		}
+		
+		nav ul {
+				list-style:none; /* removes the bullets */
+			}
+		nav ul li
+			{
+				display:inline-block; /* makes horizontal, but able to declare margins */
+				margin:0 2%; /* margin left-right, gets smaller as necessary */
+			}
+		nav a:hover{
+			text-decoration: none;
+		}	
+    </style>
+   
+    <!--[if ltIE9]>
+       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+     <![endif]-->
+</head>
+<body>
+	<header>
+		
+
+		<h1 class="masthead">Time Of Day by Bee King</h1>
+
+		<h2 id="greeting">Greeting goes here!</h2>
+
+	</header>
+    <main>
+	 <header><h3>This webpage uses skills in Javascript to determine what time of day it is and gives the user a unique image, message, and color based on these times:</h3></header>
+	
+	 <ul>
+		<li>Morning (5am to 12 noon)</li>
+		<li>Afternoon (12 noon to 6pm)</li>
+		<li>Evening (6pm to 11pm)</li>
+		<li>Night (11pm to 5am)</li>
+	 </ul>
+	  <img src="http://dummyimage.com/300x400" alt="Picture of the time." class="flexible" id="pic"/>
+     </main>
+    <footer>
+      <small>&copy; 2021, All Rights Reserved ~
+      <a href="https://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
+      <a href="https://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
+      </small>
+    </footer>
+	<script>
+				let myDate = new Date();
+
+let myText = '';
+let myColor = '';
+let myPic = '';
+
+let myHour = myDate.getHours();
+
+//myHour = 13;
+
+console.log(myHour);
+
+if(myHour >= 5 && myHour < 12){
+	myText = "Good Morning!";
+	myColor = "yellow";
+	myPic = "images/morning.jpg";
+
+} else if(myHour >= 12 && myHour < 18){
+	myText = "Good Afternoon!";
+	myColor = "orange";
+	myPic = "images/afternoon.jpg";
+
+} else if(myHour >= 18 && myHour < 23){
+	myText = "Good Evening!";
+	myColor = "teal";
+	myPic = "images/evening.jpg";
+
+}else{
+	myText = "Good Night!";
+	myColor = "purple";
+	myPic = "images/night.jpg";
+}
+
+//console.log(myText);
+document.getElementById('greeting').innerHTML = myText;
+document.getElementById('greeting').style.color = myColor;
+document.querySelector("html").style.backgroundColor = myColor;
+document.getElementById('pic').src = myPic;
+
+let myYear = myDate.getFullYear();
+document.getElementById('copyright').innerHTML = myYear;
+	</script>
+
+
+    <!-- END Footer -->
+</body>
+</html>
